@@ -6,6 +6,27 @@ const Queue = require('../lib/Queue');
 
 function isPalindrome(queue) {
   // your code here
+  const tempQueue = new Queue
+  const main = []
+  const compare = []
+
+  while (!queue.isEmpty()) {
+    let curr = queue.dequeue()
+    tempQueue.enqueue(curr)
+    compare.push(curr)
+  }
+
+  while (!tempQueue.isEmpty()) {
+    let curr = tempQueue.dequeue()
+    queue.enqueue(curr)
+    main.push(curr)
+  }
+
+
+  if (main.toString() === compare.toString()) {
+    return true
+  }
+  return false
 }
 
 const queue = new Queue();

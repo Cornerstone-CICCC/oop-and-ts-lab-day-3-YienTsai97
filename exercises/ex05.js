@@ -1,11 +1,32 @@
 // Create a function called mixQueue that rearranges the queue so that the first half is interleaved/mixed with the second half
-// For example: 1 2 3 4 5 6 becomes 1 4 2 5 4 6
+// For example: 1 2 3 4 5 6 becomes 1 4 2 5 3 6
 // Make sure to implement the Queue principle (FIFO)
 
 const Queue = require('../lib/Queue');
 
 function mixQueue(queue) {
   // your code here
+  const halfLength = queue.size() / 2
+  const tempQueueA = new Queue
+  const tempQueueB = new Queue
+
+  while (queue.size() > halfLength) {
+    tempQueueA.enqueue(queue.dequeue())
+  }
+
+  while (!queue.isEmpty()) {
+    tempQueueB.enqueue(queue.dequeue())
+  }
+
+  while (!tempQueueA.isEmpty() || !tempQueueB.isEmpty()) {
+
+    if (!tempQueueA.isEmpty()) {
+      queue.enqueue(tempQueueA.dequeue())
+    }
+    if (!tempQueueB.isEmpty()) {
+      queue.enqueue(tempQueueB.dequeue())
+    }
+  }
 }
 
 const queue = new Queue();
@@ -17,4 +38,4 @@ queue.enqueue(5);
 queue.enqueue(6);
 
 mixQueue(queue);
-console.log(queue.printQueue()); // Output: 1 4 2 5 4 6
+console.log(queue.printQueue()); // Output: 1 4 2 5 3 6

@@ -5,6 +5,19 @@ const SLL = require('../lib/SLL');
 
 function findMiddle(list) {
   // your code here
+  let midnum
+  const halfList = Math.floor(list.length() / 2)
+
+
+  while (list.head !== null) {
+    if (list.length() === halfList) {
+      midnum = list.head.data
+    }
+    list.head = list.head.next
+    list.size--
+  }
+
+  return midnum
 }
 
 const list = new SLL();
